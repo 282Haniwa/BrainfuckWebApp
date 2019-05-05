@@ -1,15 +1,6 @@
 <template>
   <div class="content">
-    <div class="token-definition-wrapper">
-      <v-text-field
-        class="token-definition"
-        :label="key"
-        :key="key"
-        :value="tokenDefinition[key]"
-        v-model="tokenDefinition[key]"
-        v-for="key in Object.keys(tokenDefinition)"
-      />
-    </div>
+    <token-definition />
     <div class="code-wrapper">
       <v-textarea
         auto-grow
@@ -43,6 +34,7 @@
 <script>
 import Brainfuck from 'src/brainfuck/Brainfuck'
 import tokenDefinition from 'src/brainfuck/tokens'
+import TokenDefinition from './components/TokenDefinition'
 
 export default {
   data() {
@@ -57,11 +49,14 @@ export default {
       const aBrainfuck = new Brainfuck(this.tokenDefinition)
       this.result = aBrainfuck.evaluate(this.code)
     }
+  },
+  components: {
+    TokenDefinition
   }
 }
 </script>
 
-<style scoped>
+<style>
 .token-definition-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -83,5 +78,9 @@ export default {
 .text-area {
   width: 48%;
   flex-grow: 0;
+}
+
+.text-area textarea {
+  font-family: Monaco, Consolas, Courier New, monospace;
 }
 </style>
