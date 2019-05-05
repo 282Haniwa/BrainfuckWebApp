@@ -9,7 +9,8 @@
         name="code"
         label="Code"
         placeholder="Write Brainfuck code here!"
-        v-model="code"
+        :value="program"
+        @input="updateProgram"
       />
       <v-textarea
         auto-grow
@@ -19,12 +20,12 @@
         name="result"
         label="Result"
         placeholder="Run it!"
-        v-model="result"
+        :value="result"
       />
     </div>
     <v-btn
       color="success"
-      @click="callBrainfuck"
+      @click="runProgram"
     >
       Run
     </v-btn>
@@ -32,22 +33,23 @@
 </template>
 
 <script>
-import Brainfuck from 'src/brainfuck/Brainfuck'
-import tokenDefinition from 'src/brainfuck/tokens'
+import { mapState } from 'vuex'
+import { actions } from 'src/store'
 import TokenDefinition from './components/TokenDefinition'
 
 export default {
-  data() {
-    return {
-      tokenDefinition: tokenDefinition,
-      code: '',
-      result: ''
-    }
+  computed: {
+    ...mapState({
+      program: state => state.program,
+      result: state => state.result
+    })
   },
   methods: {
-    callBrainfuck() {
-      const aBrainfuck = new Brainfuck(this.tokenDefinition)
-      this.result = aBrainfuck.evaluate(this.code)
+    updateProgram(value) {
+      this.$store.dispatch(actions.SET_PROGRAM, value)
+    },
+    runProgram() {
+      this.$store.dispatch(actions.RUN_PROGRAM)
     }
   },
   components: {

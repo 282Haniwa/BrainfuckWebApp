@@ -14,7 +14,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     tokens: defaultTokens,
-    program: '',
+    program: '+++++++++[>++++++++>+++++++++++>+++>+<<<<-]>.>++.+++++++..+++.\n>+++++.<<+++++++++++++++.>.+++.------.--------.>+.>+.',
     result: ''
   },
   mutations: {
