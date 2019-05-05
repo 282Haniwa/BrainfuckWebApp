@@ -2,6 +2,7 @@
   <div class="token-definition-wrapper">
     <v-textarea
       class="token-json-definition"
+      :error-messages="error"
       label="tokens"
       rows="10"
       :value="tokensString"
@@ -30,9 +31,9 @@ export default {
       try {
         const json = JSON.parse(value)
         this.$store.dispatch(actions.SET_TOKENS, json)
+        this.error = ''
       } catch (error) {
-        /* eslint no-console: "off" */
-        console.log(error)
+        this.error = error.message
       }
     }
   }
