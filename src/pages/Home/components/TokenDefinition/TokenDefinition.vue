@@ -13,16 +13,12 @@
       >
         {{ tab }}
       </v-tab>
-      <v-tab-item
-        :key="tabs[0]"
-      >
+      <v-tab-item :key="tabs[0]">
         <v-card flat>
           <token-fields />
         </v-card>
       </v-tab-item>
-      <v-tab-item
-        :key="tabs[1]"
-      >
+      <v-tab-item :key="tabs[1]">
         <v-card flat>
           <token-json-field />
         </v-card>
