@@ -29,6 +29,14 @@
     >
       Run
     </v-btn>
+    <v-snackbar
+      top
+      timeout="1500"
+      color="success"
+      v-model="snackbar"
+    >
+      Run success!
+    </v-snackbar>
   </div>
 </template>
 
@@ -38,6 +46,11 @@ import { actions } from 'src/store'
 import TokenDefinition from './components/TokenDefinition'
 
 export default {
+  data() {
+    return {
+      snackbar: false
+    }
+  },
   computed: {
     ...mapState({
       program: state => state.program,
@@ -50,6 +63,7 @@ export default {
     },
     runProgram() {
       this.$store.dispatch(actions.RUN_PROGRAM)
+      this.snackbar = true
     }
   },
   components: {
