@@ -6,7 +6,8 @@ import defaultTokens from 'src/brainfuck/tokens'
 export const actions = {
   SET_TOKENS  : 'SET_TOKENS',
   SET_PROGRAM : 'SET_PROGRAM',
-  RUN_PROGRAM : 'RUN_PROGRAM'
+  RUN_PROGRAM : 'RUN_PROGRAM',
+  CLEAR_RESULT: 'CLEAR_RESULT'
 }
 
 Vue.use(Vuex)
@@ -26,6 +27,9 @@ const store = new Vuex.Store({
     },
     setResult(state, result) {
       state.result = result
+    },
+    clearResult(state) {
+      state.result = ''
     }
   },
   actions: {
@@ -39,6 +43,9 @@ const store = new Vuex.Store({
       const aBrainfuck = new Brainfuck(context.state.tokens)
       const result = aBrainfuck.evaluate(context.state.program)
       context.commit('setResult', result)
+    },
+    [actions.CLEAR_RESULT](context) {
+      context.commit('clearResult')
     }
   }
 })

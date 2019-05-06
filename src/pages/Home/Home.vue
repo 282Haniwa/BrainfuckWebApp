@@ -23,12 +23,20 @@
         :value="result"
       />
     </div>
-    <v-btn
-      color="success"
-      @click="runProgram"
-    >
-      Run
-    </v-btn>
+    <div class="btn-wrapper">
+      <v-btn
+        color="success"
+        @click="runProgram"
+      >
+        Run
+      </v-btn>
+      <v-btn
+        color="error"
+        @click="clearResult"
+      >
+        Clear
+      </v-btn>
+    </div>
     <v-snackbar
       top
       timeout="1500"
@@ -64,6 +72,9 @@ export default {
     runProgram() {
       this.$store.dispatch(actions.RUN_PROGRAM)
       this.snackbar = true
+    },
+    clearResult() {
+      this.$store.dispatch(actions.CLEAR_RESULT)
     }
   },
   components: {
@@ -98,5 +109,11 @@ export default {
 
 .text-area textarea {
   font-family: Monaco, Consolas, Courier New, monospace;
+}
+
+.btn-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
 }
 </style>
