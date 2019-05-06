@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    &copy; Kazuma Usui all right reserved.
+    &copy; 282Haniwa all right reserved.
   </footer>
 </template>
 
