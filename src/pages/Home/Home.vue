@@ -39,9 +39,9 @@
     </div>
     <v-snackbar
       top
-      timeout="1500"
       color="success"
       v-model="snackbar"
+      :timeout="1500"
     >
       Run success!
     </v-snackbar>
