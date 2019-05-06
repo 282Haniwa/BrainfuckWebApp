@@ -30,17 +30,15 @@ const store = new Vuex.Store({
   },
   actions: {
     [actions.SET_TOKENS](context, tokens) {
-      return context.commit('setTokens', tokens)
+      context.commit('setTokens', tokens)
     },
     [actions.SET_PROGRAM](context, program) {
-      return context.commit('setProgram', program)
+      context.commit('setProgram', program)
     },
     [actions.RUN_PROGRAM](context) {
-      return new Promise((resolve) => {
-        const aBrainfuck = new Brainfuck(context.state.tokens)
-        const result = aBrainfuck.evaluate(context.state.program)
-        resolve(context.commit('setResult', result))
-      })
+      const aBrainfuck = new Brainfuck(context.state.tokens)
+      const result = aBrainfuck.evaluate(context.state.program)
+      context.commit('setResult', result)
     }
   }
 })
